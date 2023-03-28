@@ -257,7 +257,8 @@
 
   .logo,
   .thirteen img {
-    filter: invert(1) drop-shadow(0 0 0.3rem #ffffff70);
+    width: 100vw;
+    height: auto;
   }
 }
 
