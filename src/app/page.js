@@ -9,6 +9,7 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   const [image, setImage] = useState("/next.svg")
   const [message, setMessage] = useState("")
+  const [title, setTitle] = useState("")
   useEffect(() => {
     window.onReceiveImage = (imageFromNative = "") => {
       setImage(imageFromNative)
@@ -21,7 +22,22 @@ export default function Home() {
       SuperBridge.takeAPicture()
     } catch(error) {
       try {
-        window.webkit.messageHandlers.openCamera.postMessage(tempConfig)
+        window.webkit.messageHandlers.openCamera.postMessage({})
+      } catch(err) {
+        setMessage("no handler")
+        setTimeout(() => {
+          setMessage("")
+        }, 1000)
+      }
+    }
+  }
+
+  const callJSBridgeSetTitle = (title) => {
+    try {
+      SuperBridge.setTitle(title)
+    } catch(error) {
+      try {
+        window.webkit.messageHandlers.setTitle.postMessage({ title })
       } catch(err) {
         setMessage("no handler")
         setTimeout(() => {
@@ -47,6 +63,24 @@ export default function Home() {
          src={image} className={styles.logo} />
       </div>
 
+      <div className={styles.grid}>
+      <a
+          className={styles.card}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <input className={styles.input} value={title} onChange={(e) => setTitle(e.target.value)} onBlur={() => {
+            console.warn(title)
+            callJSBridgeSetTitle(title)
+            }} />
+          <h2 className={inter.className} onClick={() => callJSBridgeSetTitle(title)}>
+            Set title  <span>-&gt;</span>
+          </h2>
+          <p className={inter.className}>
+            This will call JSBridge.setTitle("params")
+          </p>
+        </a>
+      </div>
       <div className={styles.grid}>
         <a
           className={styles.card}

@@ -6,6 +6,15 @@
   padding: 6rem;
   min-height: 100vh;
 }
+.input {
+  background: transparent;
+  color: white;
+  padding: 12px;
+  border: 1px solid white;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  outline: transparent !important;
+}
 
 .description {
   display: inherit;
