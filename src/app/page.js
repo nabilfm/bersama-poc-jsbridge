@@ -80,23 +80,20 @@ export default function Home() {
       </div>
 
       <div className={styles.grid}>
-      <a
+        <a
           className={styles.card}
           target="_blank"
           rel="noopener noreferrer"
         >
-          <input className={styles.input} value={title} onChange={(e) => setTitle(e.target.value)} onBlur={() => {
-            console.warn(title)
-            callJSBridgeSetTitle(title)
-            }} />
-          <h2 className={inter.className} onClick={() => callJSBridgeToggleNavigationVisibility(title)}>
-            Toggle navigation visibility  <span>-&gt;</span>
+          <h2 className={inter.className} onClick={callJSBridgeCamera}>
+            Take a Picture  <span>-&gt;</span>
           </h2>
           <p className={inter.className}>
-            This will call JSBridge.toggleNavigation()
+            This will call JSBridge.takeAPicture()
           </p>
         </a>
       </div>
+      
       <div className={styles.grid}>
       <a
           className={styles.card}
@@ -115,17 +112,18 @@ export default function Home() {
           </p>
         </a>
       </div>
+
       <div className={styles.grid}>
-        <a
+      <a
           className={styles.card}
           target="_blank"
           rel="noopener noreferrer"
         >
-          <h2 className={inter.className} onClick={callJSBridgeCamera}>
-            Take a Picture  <span>-&gt;</span>
+          <h2 className={inter.className} onClick={() => callJSBridgeToggleNavigationVisibility(title)}>
+            Toggle navigation visibility  <span>-&gt;</span>
           </h2>
           <p className={inter.className}>
-            This will call JSBridge.takeAPicture()
+            This will call JSBridge.toggleNavigation()
           </p>
         </a>
       </div>
