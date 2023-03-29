@@ -13,7 +13,7 @@ export default function Home() {
   useEffect(() => {
     window.onReceiveImage = (imageFromNative = "") => {
       setImage(imageFromNative)
-      setMessage(`${imageFromNative.substring(0, 50)}.....${imageFromNative.substring(imageFromNative.length - 20)}`)
+      setMessage(`${imageFromNative.substring(0, 20)}.....${imageFromNative.substring(imageFromNative.length - 20)}`)
     }
   }, [])
 
