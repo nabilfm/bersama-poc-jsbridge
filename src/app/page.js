@@ -12,8 +12,9 @@ export default function Home() {
   const [title, setTitle] = useState("")
   useEffect(() => {
     window.onReceiveImage = (imageFromNative = "") => {
-      setImage(imageFromNative)
-      setMessage(`${imageFromNative.substring(0, 20)}.....${imageFromNative.substring(imageFromNative.length - 20)}`)
+      const base64Image = `data:image/png;base64,${imageFromNative}`
+      setImage(base64Image)
+      setMessage(`${base64Image.substring(0, 20)}.....${base64Image.substring(base64Image.length - 20)}`)
     }
   }, [])
 
