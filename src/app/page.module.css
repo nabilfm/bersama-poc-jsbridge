@@ -11,7 +11,7 @@
   padding: 12px;
   border: 1px solid white;
   border-radius: 4px;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
   outline: transparent !important;
 }
 
@@ -194,7 +194,6 @@
 
   .grid {
     grid-template-columns: 1fr;
-    margin-bottom: 120px;
     max-width: 320px;
     text-align: center;
   }
