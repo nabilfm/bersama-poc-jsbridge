@@ -1,8 +1,8 @@
 "use client"
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from './page.module.css'
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -10,6 +10,7 @@ export default function Home() {
   const [image, setImage] = useState("/next.svg")
   const [message, setMessage] = useState("")
   const [title, setTitle] = useState("")
+  const router = useRouter()
   useEffect(() => {
     window.onReceiveImage = (imageFromNative = "") => {
       const base64Image = `data:image/png;base64,${imageFromNative}`
@@ -82,6 +83,21 @@ export default function Home() {
          src={image} className={styles.logo} />
       </div>
 
+      <div className={styles.grid}>
+        <a
+          className={styles.card}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <h2 className={inter.className} onClick={() => router.push('second')}>
+            Override back event  <span>-&gt;</span>
+          </h2>
+          <p className={inter.className}>
+            go to next page first
+          </p>
+        </a>
+      </div>
+      
       <div className={styles.grid}>
         <a
           className={styles.card}
