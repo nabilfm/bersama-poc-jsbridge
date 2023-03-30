@@ -7,13 +7,16 @@ import { useRouter } from 'next/navigation'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Second() {
-  const [image, setImage] = useState("/next.svg")
+  const [image] = useState("/next.svg")
   const [message, setMessage] = useState("")
   const router = useRouter()
 
   useEffect(() => {
     window.onReceiveBackEvent = () => {
       setMessage('back button is pressed')
+      setTimeout(() => {
+        setMessage("")
+      }, 1000)
     }
   }, [])
 
