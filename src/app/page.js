@@ -83,13 +83,13 @@ export default function Home() {
          src={image} className={styles.logo} />
       </div>
 
-      <div className={styles.grid}>
+      <div className={styles.grid} onClick={() => router.push('second')}>
         <a
           className={styles.card}
           target="_blank"
           rel="noopener noreferrer"
         >
-          <h2 className={inter.className} onClick={() => router.push('second')}>
+          <h2 className={inter.className}>
             Override back event  <span>-&gt;</span>
           </h2>
           <p className={inter.className}>
