@@ -16,6 +16,9 @@ export default function Home() {
       setImage(base64Image)
       setMessage(`${base64Image.substring(0, 20)}.....${base64Image.substring(base64Image.length - 20)}`)
     }
+    window.onReceiveBackEvent = () => {
+      setMessage('back button is pressed')
+    }
   }, [])
 
   const callJSBridgeCamera = () => {
