@@ -64,7 +64,7 @@ export default function Home() {
       setMessage("no handler")
         setTimeout(() => {
           setMessage("")
-        }, 2000)
+        }, 4000)
     }
   }
 
