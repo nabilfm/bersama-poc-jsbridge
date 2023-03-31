@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation'
 const inter = Inter({ subsets: ['latin'] })
 
 const getOS = () => {
-  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+  const userAgent = window.navigator.userAgent || window.navigator.vendor || window.opera;
   if (/android/i.test(userAgent)) {
       return "Android";
   }
