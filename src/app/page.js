@@ -6,10 +6,30 @@ import { useRouter } from 'next/navigation'
 
 const inter = Inter({ subsets: ['latin'] })
 
+const getOS = () => {
+  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+  if (/android/i.test(userAgent)) {
+      return "Android";
+  }
+
+  if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+      return "iOS";
+  }
+}
+
+const JSBridgeType = {
+  SET_TITLE: "setTitle",
+  OPEN_CAMERA: "openCamera",
+  TOGGLE_NAVIGATION_VISIBILITY: "toggleNavigationVisibility"
+}
+
 export default function Home() {
   const [image, setImage] = useState("/next.svg")
   const [message, setMessage] = useState("")
   const [title, setTitle] = useState("")
+  const os = getOS()
+  const isIOS = os === "iOS"
+  const isAndroid = os === "Android"
   const router = useRouter()
   useEffect(() => {
     window.onReceiveImage = (imageFromNative = "") => {
@@ -22,49 +42,42 @@ export default function Home() {
     }
   }, [])
 
-  const callJSBridgeCamera = () => {
-    try {
-      SuperBridge.takeAPicture()
-    } catch(error) {
-      try {
-        window.webkit.messageHandlers.openCamera.postMessage({})
-      } catch(err) {
-        setMessage("no handler")
+  const invokeJSBridge = (type = JSBridgeType.OPEN_CAMERA, params = "") => {
+    try{
+      switch(type) {
+        case JSBridgeType.OPEN_CAMERA && isAndroid:
+          return SuperBridge.takeAPicture()
+        case JSBridgeType.OPEN_CAMERA && isIOS:
+          return window.webkit.messageHandlers.openCamera.postMessage({})
+        case JSBridgeType.SET_TITLE && isAndroid:
+          return SuperBridge.setTitle(params)
+        case JSBridgeType.SET_TITLE && isIOS:
+          return window.webkit.messageHandlers.openCamera.postMessage({title: params})
+        case JSBridgeType.TOGGLE_NAVIGATION_VISIBILITY && isAndroid:
+          return SuperBridge.toggleNavigationVisibility(params)
+        case JSBridgeType.TOGGLE_NAVIGATION_VISIBILITY && isIOS:
+          return window.webkit.messageHandlers.toggleNavigationVisibility.postMessage({})
+        default:
+          throw Error()
+      }
+    } catch(err) {
+      setMessage("no handler")
         setTimeout(() => {
           setMessage("")
-        }, 1000)
-      }
+        }, 2000)
     }
+  }
+
+  const callJSBridgeCamera = () => {
+    invokeJSBridge(JSBridgeType.OPEN_CAMERA)
   }
 
   const callJSBridgeSetTitle = (title) => {
-    try {
-      SuperBridge.setTitle(title)
-    } catch(error) {
-      try {
-        window.webkit.messageHandlers.setTitle.postMessage({ title })
-      } catch(err) {
-        setMessage("no handler")
-        setTimeout(() => {
-          setMessage("")
-        }, 1000)
-      }
-    }
+    invokeJSBridge(JSBridgeType.SET_TITLE, title)
   }
 
   const callJSBridgeToggleNavigationVisibility = () => {
-    try {
-      SuperBridge.toggleNavigationVisibility()
-    } catch(error) {
-      try {
-        window.webkit.messageHandlers.toggleNavigationVisibility.postMessage({})
-      } catch(err) {
-        setMessage("no handler")
-        setTimeout(() => {
-          setMessage("")
-        }, 1000)
-      }
-    }
+    invokeJSBridge(JSBridgeType.TOGGLE_NAVIGATION_VISIBILITY)
   }
 
   return (
