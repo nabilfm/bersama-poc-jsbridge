@@ -6,17 +6,6 @@ import { useRouter } from 'next/navigation'
 
 const inter = Inter({ subsets: ['latin'] })
 
-const getOS = () => {
-  const userAgent = window.navigator.userAgent || window.navigator.vendor || window.opera;
-  if (/android/i.test(userAgent)) {
-      return "Android";
-  }
-
-  if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-      return "iOS";
-  }
-}
-
 const JSBridgeType = {
   SET_TITLE: "setTitle",
   OPEN_CAMERA: "openCamera",
@@ -24,6 +13,18 @@ const JSBridgeType = {
 }
 
 export default function Home() {
+  const getOS = () => {
+    const userAgent = window.navigator.userAgent || window.navigator.vendor || window.opera;
+    if (/android/i.test(userAgent)) {
+        return "Android";
+    }
+  
+    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        return "iOS";
+    }
+  }
+
+
   const [image, setImage] = useState("/next.svg")
   const [message, setMessage] = useState("")
   const [title, setTitle] = useState("")
