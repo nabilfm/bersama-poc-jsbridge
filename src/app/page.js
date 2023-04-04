@@ -28,7 +28,7 @@ export default function Home() {
   const [image, setImage] = useState("/next.svg")
   const [message, setMessage] = useState("")
   const [title, setTitle] = useState("")
-  const os = getOS()
+  let os = ""
   const isIOS = os === "iOS"
   const isAndroid = os === "Android"
   const router = useRouter()
@@ -40,6 +40,7 @@ export default function Home() {
     }
     window.onReceiveBackEvent = null
     userAgent = window.navigator.userAgent || window.navigator.vendor || window.opera;
+    os = getOS()
   }, [])
 
   const invokeJSBridge = (type = JSBridgeType.OPEN_CAMERA, params = "") => {
