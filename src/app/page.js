@@ -13,8 +13,8 @@ const JSBridgeType = {
 }
 
 export default function Home() {
+  let userAgent = ""
   const getOS = () => {
-    let userAgent = ""
     if (/android/i.test(userAgent)) {
         return "Android";
     }
