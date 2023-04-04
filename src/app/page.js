@@ -49,17 +49,22 @@ export default function Home() {
     try{
       switch(type) {
         case JSBridgeType.OPEN_CAMERA && isAndroid:
-          return SuperBridge.takeAPicture()
+          SuperBridge.takeAPicture()
+          break;
         case JSBridgeType.OPEN_CAMERA && isIOS:
-          return window.webkit.messageHandlers.openCamera.postMessage({})
+          window.webkit.messageHandlers.openCamera.postMessage({})
+          break;
         case JSBridgeType.SET_TITLE && isAndroid:
-          return SuperBridge.setTitle(params)
+          SuperBridge.setTitle(params)
         case JSBridgeType.SET_TITLE && isIOS:
-          return window.webkit.messageHandlers.setTitle.postMessage({title: params})
-        case JSBridgeType.TOGGLE_NAVIGATION_VISIBILITY && isAndroid:
-          return SuperBridge.toggleNavigationVisibility(params)
-        case JSBridgeType.TOGGLE_NAVIGATION_VISIBILITY && isIOS:
-          return window.webkit.messageHandlers.toggleNavigationVisibility.postMessage({})
+          window.webkit.messageHandlers.setTitle.postMessage({title: params})
+          break;
+        case idgeType.TOGGLE_NAVIGATION_VISIBILITY && isAndroid:
+          SuperBridge.toggleNavigationVisibility(params)
+          break;
+        case idgeType.TOGGLE_NAVIGATION_VISIBILITY && isIOS:
+          window.webkit.messageHandlers.toggleNavigationVisibility.postMessage({})
+          break;
         default:
           throw Error()
       }
