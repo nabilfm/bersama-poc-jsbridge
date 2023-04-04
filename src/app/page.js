@@ -14,6 +14,7 @@ const JSBridgeType = {
 
 export default function Home() {
   const getOS = (userAgent) => {
+    console.warn(`userAgent ===> ${userAgent}`)
     if (/android/i.test(userAgent)) {
         return "Android";
     }
