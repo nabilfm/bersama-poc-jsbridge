@@ -15,11 +15,6 @@ const JSBridgeType = {
 export default function Home() {
   const getOS = () => {
     let userAgent = ""
-    try {
-      userAgent = window.navigator.userAgent || window.navigator.vendor || window.opera;
-    } catch(e) {
-      
-    }
     if (/android/i.test(userAgent)) {
         return "Android";
     }
@@ -44,6 +39,7 @@ export default function Home() {
       setMessage(`${base64Image.substring(0, 20)}.....${base64Image.substring(base64Image.length - 20)}`)
     }
     window.onReceiveBackEvent = null
+    userAgent = window.navigator.userAgent || window.navigator.vendor || window.opera;
   }, [])
 
   const invokeJSBridge = (type = JSBridgeType.OPEN_CAMERA, params = "") => {
