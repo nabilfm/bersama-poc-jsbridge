@@ -14,7 +14,7 @@ const JSBridgeType = {
 
 export default function Home() {
   const getOS = () => {
-    const userAgent = window.navigator.userAgent || window.navigator.vendor || window.opera;
+    const userAgent = (window ?? {}).navigator.userAgent || (window ?? {}).navigator.vendor || (window ?? {}).opera;
     if (/android/i.test(userAgent)) {
         return "Android";
     }
