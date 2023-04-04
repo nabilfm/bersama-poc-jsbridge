@@ -1,7 +1,7 @@
 "use client"
 import { Inter } from 'next/font/google'
 import styles from './page.module.css'
-import { useEffect, useState } from 'react'
+import { use, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -14,7 +14,12 @@ const JSBridgeType = {
 
 export default function Home() {
   const getOS = () => {
-    const userAgent = (window ?? {}).navigator.userAgent || (window ?? {}).navigator.vendor || (window ?? {}).opera;
+    let userAgent = ""
+    try {
+      userAgent = window.navigator.userAgent || window.navigator.vendor || window.opera;
+    } catch(e) {
+      
+    }
     if (/android/i.test(userAgent)) {
         return "Android";
     }
