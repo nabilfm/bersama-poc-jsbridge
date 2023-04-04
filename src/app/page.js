@@ -38,9 +38,7 @@ export default function Home() {
       setImage(base64Image)
       setMessage(`${base64Image.substring(0, 20)}.....${base64Image.substring(base64Image.length - 20)}`)
     }
-    window.onReceiveBackEvent = () => {
-      setMessage('back button is pressed')
-    }
+    window.onReceiveBackEvent = null
   }, [])
 
   const invokeJSBridge = (type = JSBridgeType.OPEN_CAMERA, params = "") => {
@@ -53,7 +51,7 @@ export default function Home() {
         case JSBridgeType.SET_TITLE && isAndroid:
           return SuperBridge.setTitle(params)
         case JSBridgeType.SET_TITLE && isIOS:
-          return window.webkit.messageHandlers.openCamera.postMessage({title: params})
+          return window.webkit.messageHandlers.setTitle.postMessage({title: params})
         case JSBridgeType.TOGGLE_NAVIGATION_VISIBILITY && isAndroid:
           return SuperBridge.toggleNavigationVisibility(params)
         case JSBridgeType.TOGGLE_NAVIGATION_VISIBILITY && isIOS:
