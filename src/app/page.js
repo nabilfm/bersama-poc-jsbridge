@@ -49,20 +49,26 @@ export default function Home() {
     try{
       switch(type) {
         case JSBridgeType.OPEN_CAMERA && isAndroid:
+          console.warn("called openCamera android")
           SuperBridge.takeAPicture()
           break;
         case JSBridgeType.OPEN_CAMERA && isIOS:
+          console.warn("called openCamera ios")
           window.webkit.messageHandlers.openCamera.postMessage({})
           break;
         case JSBridgeType.SET_TITLE && isAndroid:
+          console.warn("called setTitle android")
           SuperBridge.setTitle(params)
         case JSBridgeType.SET_TITLE && isIOS:
+          console.warn("called setTitle ios")
           window.webkit.messageHandlers.setTitle.postMessage({title: params})
           break;
         case idgeType.TOGGLE_NAVIGATION_VISIBILITY && isAndroid:
+          console.warn("called toggleNavigation android")
           SuperBridge.toggleNavigationVisibility(params)
           break;
         case idgeType.TOGGLE_NAVIGATION_VISIBILITY && isIOS:
+          console.warn("called toggleNavigation ios")
           window.webkit.messageHandlers.toggleNavigationVisibility.postMessage({})
           break;
         default:
