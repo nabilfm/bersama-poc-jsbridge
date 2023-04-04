@@ -32,6 +32,7 @@ export default function Home() {
   const isIOS = os === "iOS"
   const isAndroid = os === "Android"
   const router = useRouter()
+  console.warn(`userAgent ${userAgent}`)
   useEffect(() => {
     window.onReceiveImage = (imageFromNative = "") => {
       const base64Image = `data:image/png;base64,${imageFromNative}`
