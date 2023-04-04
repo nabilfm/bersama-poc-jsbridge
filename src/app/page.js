@@ -45,6 +45,7 @@ export default function Home() {
   }, [])
 
   const invokeJSBridge = (type = JSBridgeType.OPEN_CAMERA, params = "") => {
+    console.warn(`type ${type} and isAndroid ${isAndroid} and isIOS ${isIOS}`)
     try{
       switch(type) {
         case JSBridgeType.OPEN_CAMERA && isAndroid:
