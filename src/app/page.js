@@ -57,7 +57,7 @@ export default function Home() {
           isIOS && window.webkit.messageHandlers.setTitle.postMessage({title: params})
           break;
         case idgeType.TOGGLE_NAVIGATION_VISIBILITY && isAndroid:
-          isAndroid && SuperBridge.toggleNavigationVisibility(params)
+          isAndroid && SuperBridge.toggleNavigationVisibility()
           isIOS && window.webkit.messageHandlers.toggleNavigationVisibility.postMessage({})
           break;
         default:
