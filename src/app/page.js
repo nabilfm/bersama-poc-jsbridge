@@ -13,8 +13,7 @@ const JSBridgeType = {
 }
 
 export default function Home() {
-  let userAgent = ""
-  const getOS = () => {
+  const getOS = (userAgent) => {
     if (/android/i.test(userAgent)) {
         return "Android";
     }
@@ -28,11 +27,10 @@ export default function Home() {
   const [image, setImage] = useState("/next.svg")
   const [message, setMessage] = useState("")
   const [title, setTitle] = useState("")
-  let os = ""
+  const [os, setOS] = useState("")
   const isIOS = os === "iOS"
   const isAndroid = os === "Android"
   const router = useRouter()
-  console.warn(`userAgent ${userAgent}`)
   useEffect(() => {
     window.onReceiveImage = (imageFromNative = "") => {
       const base64Image = `data:image/png;base64,${imageFromNative}`
@@ -40,8 +38,7 @@ export default function Home() {
       setMessage(`${base64Image.substring(0, 20)}.....${base64Image.substring(base64Image.length - 20)}`)
     }
     window.onReceiveBackEvent = null
-    userAgent = window.navigator.userAgent || window.navigator.vendor || window.opera;
-    os = getOS()
+    setOS(getOS(window.navigator.userAgent || window.navigator.vendor || window.opera))
   }, [])
 
   const invokeJSBridge = (type = JSBridgeType.OPEN_CAMERA, params = "") => {
