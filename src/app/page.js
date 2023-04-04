@@ -28,9 +28,8 @@ export default function Home() {
   const [image, setImage] = useState("/next.svg")
   const [message, setMessage] = useState("")
   const [title, setTitle] = useState("")
-  const [os, setOS] = useState("")
-  const isIOS = os === "iOS"
-  const isAndroid = os === "Android"
+  const [isAndroid, setIsAndroid] = useState(false)
+  const [isIOS, setIsIOS] = useState(false)
   const router = useRouter()
   useEffect(() => {
     window.onReceiveImage = (imageFromNative = "") => {
@@ -39,7 +38,9 @@ export default function Home() {
       setMessage(`${base64Image.substring(0, 20)}.....${base64Image.substring(base64Image.length - 20)}`)
     }
     window.onReceiveBackEvent = null
-    setOS(getOS(window.navigator.userAgent || window.navigator.vendor || window.opera))
+    const os = getOS(window.navigator.userAgent || window.navigator.vendor || window.opera)
+    setIsAndroid(os === "Android")
+    setIsAndroid(os === "iOS")
   }, [])
 
   const invokeJSBridge = (type = JSBridgeType.OPEN_CAMERA, params = "") => {
