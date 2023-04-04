@@ -39,8 +39,9 @@ export default function Home() {
     }
     window.onReceiveBackEvent = null
     const os = getOS(window.navigator.userAgent || window.navigator.vendor || window.opera)
+    console.warn(`"os ===> ${os}"`)
     setIsAndroid(os === "Android")
-    setIsAndroid(os === "iOS")
+    setIsIOS(os === "iOS")
   }, [])
 
   const invokeJSBridge = (type = JSBridgeType.OPEN_CAMERA, params = "") => {
