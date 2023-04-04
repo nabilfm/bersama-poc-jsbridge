@@ -56,7 +56,7 @@ export default function Home() {
           isAndroid && SuperBridge.setTitle(params)
           isIOS && window.webkit.messageHandlers.setTitle.postMessage({title: params})
           break;
-        case JSBridgeType.TOGGLE_NAVIGATION_VISIBILITY && isAndroid:
+        case JSBridgeType.TOGGLE_NAVIGATION_VISIBILITY:
           isAndroid && SuperBridge.toggleNavigationVisibility()
           isIOS && window.webkit.messageHandlers.toggleNavigationVisibility.postMessage({})
           break;
