@@ -54,7 +54,6 @@ export default function Home() {
           break;
         case JSBridgeType.SET_TITLE:
           isAndroid && SuperBridge.setTitle(params)
-          isIOS && window.webkit.messageHandlers.setTitle.postMessage({title: params})
           break;
         case JSBridgeType.TOGGLE_NAVIGATION_VISIBILITY:
           isAndroid && SuperBridge.toggleNavigationVisibility()
@@ -125,40 +124,6 @@ export default function Home() {
           </h2>
           <p className={inter.className}>
             This will call JSBridge.takeAPicture()
-          </p>
-        </a>
-      </div>
-      
-      <div className={styles.grid}>
-      <a
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <input className={styles.input} value={title} onChange={(e) => setTitle(e.target.value)} onBlur={() => {
-            console.warn(title)
-            callJSBridgeSetTitle(title)
-            }} />
-          <h2 className={inter.className} onClick={() => callJSBridgeSetTitle(title)}>
-            Set title  <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            This will call JSBridge.setTitle("params")
-          </p>
-        </a>
-      </div>
-
-      <div className={styles.grid}>
-      <a
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className} onClick={() => callJSBridgeToggleNavigationVisibility(title)}>
-            Toggle navigation visibility  <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            This will call JSBridge.toggleNavigation()
           </p>
         </a>
       </div>
