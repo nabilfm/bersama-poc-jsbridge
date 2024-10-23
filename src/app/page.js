@@ -127,6 +127,18 @@ export default function Home() {
           </p>
         </a>
       </div>
+
+      <div className={styles.grid}>
+        <a
+          className={styles.card}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <h2 className={inter.className} onClick={() => router.push('zanroo')}>
+            Zanroo usecase  <span>-&gt;</span>
+          </h2>
+        </a>
+      </div>
     </main>
   )
 }

@@ -5,6 +5,17 @@
   align-items: center;
   min-height: 100vh;
 }
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.cardZanroo {
+  border: 1px solid #ffff;
+  border-radius: 8px;
+  padding: 4px;
+  margin-right: 8px;
+}
 .input {
   background: transparent;
   color: white;
@@ -13,6 +24,11 @@
   border-radius: 4px;
   margin-bottom: 16px;
   outline: transparent !important;
+}
+.back {
+  margin-left: 8px;
+  margin-top: 48px;
+  margin-bottom: 16px;
 }
 
 .description {
@@ -51,6 +67,10 @@
   display: grid;
   /* grid-template-columns: repeat(3, minmax(33%, auto)); */
   width: var(--max-width);
+  border: 1px solid #ffffff96;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  padding: 8px;
   max-width: 100%;
 }
 .list {
@@ -189,7 +209,7 @@
 /* Mobile and Tablet */
 @media (max-width: 1023px) {
   .content {
-    padding: 4rem;
+    padding: 2rem;
   }
 
   .grid {
