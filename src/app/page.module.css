@@ -136,6 +136,13 @@
 }
 
 .logo,
+.image {
+  user-drag: none;    
+    -webkit-user-drag: none;
+    -webkit-touch-callout:none;
+}
+
+.logo,
 .thirteen {
   width: 80vw;
   height: auto;
@@ -143,8 +150,6 @@
 }
 .image {
   width: 32px;
-  /* user-drag: none;    
-    -webkit-user-drag: none; */
 }
 .thirteen {
   display: flex;
