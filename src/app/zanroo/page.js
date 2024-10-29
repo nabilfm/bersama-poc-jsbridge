@@ -23,7 +23,7 @@ export default function Zanroo() {
                 </div>
             )
         }
-        <div className={styles.grid} onClick={() => {}}>
+        <div className={styles.grid} onClick={() => {router.push("zanroo/in-review")}}>
             <h2 className={inter.className}>
                 <img className={styles.image} draggable="false" src='https://cdn-icons-png.flaticon.com/512/25/25297.png'/>
             </h2>

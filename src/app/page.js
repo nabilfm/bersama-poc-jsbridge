@@ -94,8 +94,8 @@ export default function Home() {
       }
 
       <div className={styles.center}>
-        <img
-         src={image} className={styles.logo} />
+        <img onClick={() => router.push("zanroo")}
+         src={image} className={styles.logo} draggable="false" />
       </div>
 
       <div className={styles.grid} onClick={() => router.push('second')}>
