@@ -141,7 +141,11 @@
   height: auto;
   position: relative;
 }
-
+.image {
+  width: 32px;
+  /* user-drag: none;    
+    -webkit-user-drag: none; */
+}
 .thirteen {
   display: flex;
   justify-content: center;

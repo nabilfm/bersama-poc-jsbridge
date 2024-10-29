@@ -23,5 +23,10 @@ export default function Zanroo() {
                 </div>
             )
         }
+        <div className={styles.grid} onClick={() => {}}>
+            <h2 className={inter.className}>
+                <img className={styles.image} src='https://cdn-icons-png.flaticon.com/512/25/25297.png'/>
+            </h2>
+        </div>
     </div>
 }
